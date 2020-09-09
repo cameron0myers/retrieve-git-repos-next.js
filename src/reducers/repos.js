@@ -5,7 +5,7 @@ export const initialAppState = {
   repos: []
 }
 
-export default function (state = initialAppState, action) {
+function repos (state = initialAppState, action) {
   switch (action.type) {
     case GET_TOP_REPOS:
       return { ...state, isLoading: true }
@@ -29,3 +29,5 @@ export default function (state = initialAppState, action) {
       return state
   }
 }
+
+export default repos

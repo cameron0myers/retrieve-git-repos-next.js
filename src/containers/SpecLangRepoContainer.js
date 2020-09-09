@@ -5,16 +5,21 @@ import { connect } from 'react-redux'
 import { getTopRepos } from 'actions/repos'
 import RepoCard from 'components/RepoCard'
 
-const SpecLangRepoContainer = ({ isLoading, repos, lang, dispatch }) => {
+const SpecLangRepoContainer = ({
+  isLoading,
+  repos,
+  query: { lang },
+  dispatch
+}) => {
   const getSpecLangRepo = async () => {
-    await dispatch(getTopRepos({ lang }))
+    await dispatch(getTopRepos({ lang: lang || 'javascript' }))
   }
 
   useEffect(() => {
     getSpecLangRepo()
   }, [lang])
 
-  const specRepos = repos.find(repo => repo.lang === lang)
+  const specRepos = repos.find((repo) => repo.lang === lang)
 
   if (isLoading || !specRepos) {
     return <div>Loading...</div>
@@ -23,13 +28,13 @@ const SpecLangRepoContainer = ({ isLoading, repos, lang, dispatch }) => {
   return <RepoCard repos={specRepos} />
 }
 
-const mapStateToProps = (
-  { app: { isLoading, repos } },
-  { router: { query } }
-) => ({
+SpecLangRepoContainer.getInitialProps = ({ query }) => {
+  return { query }
+}
+
+const mapStateToProps = ({ app: { isLoading, repos } }) => ({
   isLoading,
-  repos,
-  lang: query.lang || 'javascript'
+  repos
 })
 
 SpecLangRepoContainer.propTypes = {

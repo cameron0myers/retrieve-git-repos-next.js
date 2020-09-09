@@ -106,7 +106,7 @@ const Layout = props => {
                   <Fragment key={key}>
                     <DropdownItem divider />
                     <DropdownItem>
-                      <NextLink href={`/spec/?lang=${item.toLowerCase()}`}>
+                      <NextLink href={{ pathname: 'spec', query: { lang: item.toLowerCase() } }}>
                         <NavLink>{item}</NavLink>
                       </NextLink>
                     </DropdownItem>
