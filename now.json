@@ -1,0 +1,15 @@
+{
+  "name": "next-demo",
+  "public": true,
+  "version": 2,
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@now/next"
+    }
+  ],
+  "alias": "retrieve-git-repos-nextjs.cameron0myers.now.sh",
+  "env": {
+    "GITHUB_API_ENDPOINT": "https://api.github.com"
+  }
+}
